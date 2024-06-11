@@ -5,7 +5,9 @@ import com.nuedaProject.demo.model.DebitCard;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface DebitCardRepository extends JpaRepository<DebitCard, Long>{
-    @Query(value = "{uid:?0}")
-    DebitCard findByUid(Long uid);
+    @Query(value = "SELECT d FROM DebitCard d WHERE d.uid = :uid")
+    List<DebitCard> findByUid(Long uid);
 }

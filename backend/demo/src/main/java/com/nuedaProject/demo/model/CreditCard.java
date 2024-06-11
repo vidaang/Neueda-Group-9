@@ -16,12 +16,12 @@ public class CreditCard {
 
     // TODO 1: Set foreign key relationship to User table
     private Long uid;
-    private Float limit;
+    private Float cardLimit;
     private Float balance;
 
-    public CreditCard(Long uid, Float limit, Float balance){
+    public CreditCard(Long uid, Float cardLimit, Float balance){
         this.uid = uid;
-        this.limit = limit;
+        this.cardLimit = cardLimit;
         this.balance = balance;
     }
 
