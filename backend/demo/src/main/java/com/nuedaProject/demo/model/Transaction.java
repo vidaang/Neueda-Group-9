@@ -22,7 +22,6 @@ public class Transaction {
 
     // TODO 3: Set foreign key relationship to the two cardID table
     private Long uid;
-    private Float balance;
     private Long creditCardId;
     private Long debitCardId;
     private Float amount;
