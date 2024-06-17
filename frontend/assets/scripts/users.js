@@ -1,7 +1,7 @@
 // Calls the api endpoint
 async function fetchUserData() {
     try {
-        const response = await fetch('http://localhost:8080/user');
+        const response = await fetch(`http://localhost:8080/user`);
 
         if (!response.ok) {
             throw new Error('Network response failed: ' + response.statusText);
@@ -53,7 +53,11 @@ function displayUserData(user) {
         dataRow.appendChild(nameData);
 
         const creditScoreData = document.createElement('td');
-        creditScoreData.textContent = user.creditScore;
+        if (user.creditScore === -1) {
+            creditScoreData.textContent = 'DNE';
+        } else {
+            creditScoreData.textContent = user.creditScore;
+        }
         dataRow.appendChild(creditScoreData);
 
         // redirects to user's card accounts when row is clicked
