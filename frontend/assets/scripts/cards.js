@@ -1,29 +1,26 @@
 // Fetch data from the API
-fetch('https://api.example.com/cards')
+fetch('http://localhost:8080/user')
     .then(response => response.json())
     .then(data => {
-        // Select the table
-        const table = document.querySelector('table');
+        // Select the tables
+        const creditCardTable = document.querySelector('#creditCardTable');
+        const debitCardTable = document.querySelector('#debitCardTable');
 
-        // Loop through the data
-        data.forEach(item => {
-            // Create a new row
-            const row = document.createElement('tr');
+        // Function to populate table
+        const populateTable = (table, list) => {
+            list.forEach(item => {
+                const row = document.createElement('tr');
+                for (let key in item) {
+                    const cell = document.createElement('td');
+                    cell.textContent = item[key];
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            });
+        }
 
-            // Loop through each property in the item
-            for (let key in item) {
-                // Create a new cell
-                const cell = document.createElement('td');
-
-                // Set the cell text
-                cell.textContent = item[key];
-
-                // Add the cell to the row
-                row.appendChild(cell);
-            }
-
-            // Add the row to the table
-            table.appendChild(row);
-        });
+        // Populate tables
+        populateTable(creditCardTable, data.creditCardList);
+        populateTable(debitCardTable, data.debitCardList);
     })
     .catch(error => console.error('Error:', error));
