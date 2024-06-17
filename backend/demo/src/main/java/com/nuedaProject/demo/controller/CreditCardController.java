@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class CreditCardController {
     }
 
     // Get one credit card by id, params "id" is gained from http request url
+    @CrossOrigin(origins = "*")
     @GetMapping("/cardId/{id}")
     public CreditCard getCreditCardById(@PathVariable Long id) {
         return creditCardRepository.findById(id)
@@ -31,6 +33,7 @@ public class CreditCardController {
     }
 
     // // Get a list of credit card by given user id, params "uid" is gained from http request url
+    @CrossOrigin(origins = "*")
     @GetMapping("/userId/{uid}")
     public ResponseEntity<List<CreditCard>> getCreditCardByUserId(@PathVariable("uid") Long uid){
         List<CreditCard> creditCards = creditCardRepository.findByUid(uid);
@@ -38,6 +41,7 @@ public class CreditCardController {
     }
 
     // // Get all credit card in the database
+    @CrossOrigin(origins = "*")
     @GetMapping()
     public List<CreditCard> getCreditCards(){
         return creditCardRepository.findAll();
