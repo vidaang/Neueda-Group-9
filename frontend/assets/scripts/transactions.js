@@ -29,6 +29,7 @@ async function fetchTransactionData(uid) {
     // Get debit card transactions
     try {
         const response = await fetch(`http://localhost:8080/transaction/debitCard/${uid}`);
+      
         if (!response.ok) {
             throw new Error('Network response failed: ' + response.statusText);
         }
