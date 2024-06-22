@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,7 @@ public class TransactionController {
     TransactionRepository transactionRepository;
 
     // Return a list of transaction belongs to the "creditCardId" in the path variable
+    @CrossOrigin(origins = "*")
     @GetMapping("/creditCard/{creditCardId}")
     public ResponseEntity<List<Transaction>> getTransactionByCreditCardId(@PathVariable("creditCardId")Long creditCardId){
         List<Transaction> trans = transactionRepository.findByCreditCardId(creditCardId);
@@ -27,6 +29,7 @@ public class TransactionController {
     }
 
     // Return a list of transaction belongs to the "debitCardId" in the path variable
+    @CrossOrigin(origins = "*")
     @GetMapping("/debitCard/{debitCardId}")
     public ResponseEntity<List<Transaction>> getTransactionByDebitCardId(@PathVariable("debitCardId")Long debitCardId){
         List<Transaction> trans = transactionRepository.findByDebitCardId(debitCardId);
@@ -34,6 +37,7 @@ public class TransactionController {
     }
 
     // Return optional transaction by the given "id" or transaction id
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Transaction>> getTransactionById(@PathVariable("id")Long id){
         Optional<Transaction> trans = transactionRepository.findById(id);
@@ -41,6 +45,7 @@ public class TransactionController {
     }
 
     // Return all transaction in the database
+    @CrossOrigin(origins = "*")
     @GetMapping("")
     public ResponseEntity<List<Transaction>> getAllTransaction(){
         List<Transaction> trans = transactionRepository.findAll();

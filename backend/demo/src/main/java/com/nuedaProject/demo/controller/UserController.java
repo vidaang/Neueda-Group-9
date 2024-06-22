@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.swing.text.html.Option;
 import java.util.List;
@@ -21,6 +22,7 @@ public class UserController {
     UserRepository userRepository;
 
     // Return optional User and takes in user id of "id"
+    @CrossOrigin(origins = "*")
     @GetMapping("{id}")
     public ResponseEntity<Optional<User>> findUserById(@PathVariable("id") Long id){
         Optional<User> user = userRepository.findById(id);
@@ -28,6 +30,7 @@ public class UserController {
     }
 
     // Return a list of all User inside the database
+    @CrossOrigin(origins = "*")
     @GetMapping("")
     public ResponseEntity<List<User>> findAllUser(){
         List<User> users = userRepository.findAll();

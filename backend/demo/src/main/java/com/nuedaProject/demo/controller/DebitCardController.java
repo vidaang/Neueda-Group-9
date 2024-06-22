@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 @RestController
@@ -23,6 +24,7 @@ public class DebitCardController {
         }
 
         // Get one debit card through given debitCardId
+        @CrossOrigin(origins = "*")
         @GetMapping("/cardId/{id}")
         public DebitCard getDebitCardById(@PathVariable Long id) {
             return debitCardRepository.findById(id)
@@ -30,6 +32,7 @@ public class DebitCardController {
         }
 
         // Get a list of debit card of a user through params (Long uid) in the request url
+        @CrossOrigin(origins = "*")
         @GetMapping("/userId/{uid}")
         public ResponseEntity<List<DebitCard>> getDebitCardByUserId(@PathVariable("uid") Long uid){
             List<DebitCard> debitCards = debitCardRepository.findByUid(uid);
@@ -38,6 +41,7 @@ public class DebitCardController {
 
 
         // Get all debit card in the database, no params required
+        @CrossOrigin(origins = "*")
         @GetMapping()
         public List<DebitCard> getDebitCards(){
             return debitCardRepository.findAll();
