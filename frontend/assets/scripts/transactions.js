@@ -13,7 +13,9 @@ window.onload = () => {
 async function fetchTransactionData(uid, isCreditCard) {
     const transactions = [];
 
-    if (isCreditCard) {
+    console.log("This is the value of:", isCreditCard);
+
+    if (isCreditCard === true) {
         // Get credit card transactions
         try {
             const response = await fetch(`http://localhost:8080/transaction/creditCard/${uid}`);
@@ -61,7 +63,7 @@ function displayTransactionData(transactions, isCreditCard) {
     uidHeader.textContent = 'User ID';
     headerRow.appendChild(uidHeader);
 
-    if (isCreditCard) {
+    if (isCreditCard === true) {
         const creditCardHeader = document.createElement('th');
         creditCardHeader.textContent = 'Credit Card ID';
         headerRow.appendChild(creditCardHeader);
@@ -90,7 +92,7 @@ function displayTransactionData(transactions, isCreditCard) {
         uidData.textContent = transactions.uid;
         dataRow.appendChild(uidData);
     
-        if (isCreditCard) {
+        if (isCreditCard === true) {
             const creditCardData = document.createElement('td');
             creditCardData.textContent = transactions.creditCardId;
             dataRow.appendChild(creditCardData);

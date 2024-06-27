@@ -17,7 +17,6 @@ table {
     background-color: rgb(230, 230, 230);
     margin: auto;
     border-color: black;
-    border-radius: 1px;
 }
 th {
     background-color: #000000;
@@ -29,6 +28,7 @@ th {
 td {
     border: 1px solid #000000;
     padding: 8px;
+    border-width: 1px;
 }
 tr:hover {
     background-color: #bed4f4;
