@@ -14,7 +14,7 @@ async function fetchCardData(uid) {
 
     // Get credit card cards
     try {
-        const response = await fetch(`http://localhost:8080/creditCard/userId/${uid}`);
+        const response = await fetch(`http://localhost:8080/creditcard/userId/${uid}`);
         if (!response.ok) {
             throw new Error('Network response failed: ' + response.statusText);
         }
@@ -27,7 +27,7 @@ async function fetchCardData(uid) {
 
     // Get debit card cards
     try {
-        const response = await fetch(`http://localhost:8080/debitCard/userId/${uid}`);
+        const response = await fetch(`http://localhost:8080/debitcard/userId/${uid}`);
       
         if (!response.ok) {
             throw new Error('Network response failed: ' + response.statusText);
@@ -106,7 +106,3 @@ function displayCardData(card) {
     cardInfoDiv.innerHTML = '';
     cardInfoDiv.appendChild(table);
 }
-
-
-// creates the table when the page loads
-window.onload = fetchCards;
