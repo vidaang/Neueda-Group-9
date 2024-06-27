@@ -99,6 +99,18 @@ function displayCardData(card) {
         const balanceData = document.createElement('td');
         balanceData.textContent = card.balance;
         dataRow.appendChild(balanceData);
+
+        // redirects to user's card accounts when row is clicked
+        dataRow.addEventListener('click', () => {
+
+            if (card.creditCardId === card.uid) {
+                const isCreditCard = true;
+                window.location.href = `pages/transactions.html?uid=${card.creditCardId}&isCreditCard=${isCreditCard}`;
+            } else {
+                const isCreditCard = false;
+                window.location.href = `pages/transactions.html?uid=${card.debitCardId}&isCreditCard=${isCreditCard}`;
+            }
+        });
     
         table.appendChild(dataRow);
     })
