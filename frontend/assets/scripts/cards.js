@@ -104,11 +104,9 @@ function displayCardData(card) {
         dataRow.addEventListener('click', () => {
 
             if (card.creditCardId === card.uid) {
-                const isCreditCard = true;
-                window.location.href = `pages/transactions.html?uid=${card.creditCardId}&isCreditCard=${isCreditCard}`;
+                window.location.href = `transactions.html?uid=${card.creditCardId}&isCreditCard=${true}`;
             } else {
-                const isCreditCard = false;
-                window.location.href = `pages/transactions.html?uid=${card.debitCardId}&isCreditCard=${isCreditCard}`;
+                window.location.href = `transactions.html?uid=${card.debitCardId}&isCreditCard=${false}`;
             }
         });
     

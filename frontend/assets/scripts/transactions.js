@@ -1,7 +1,6 @@
 window.onload = () => {
-    // const uid = new URLSearchParams(window.location.search).get('uid');
-    const uid = 1; // REMOVE THIS LINE LATER WHEN all-cards.html IS FINISHED
-    const isCreditCard = false; // REMOVE THIS LINE LATER WHEN all-cards.html IS FINISHED
+    const uid = new URLSearchParams(window.location.search).get('uid');
+    const isCreditCard = new URLSearchParams(window.location.search).get('isCreditCard')
 
     if (uid) {
         fetchTransactionData(uid, isCreditCard);
