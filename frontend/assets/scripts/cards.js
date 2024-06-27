@@ -39,7 +39,7 @@ async function fetchCardData(uid) {
     } catch (error) {
         console.error('Fetch Operation Error (Debit Card):', error);
     }
-    console.log(cards);
+
     displayCardData(cards);
 }
 
@@ -92,13 +92,13 @@ function displayCardData(card) {
         debitCardData.textContent = card.debitCardId;
         dataRow.appendChild(debitCardData);
 
-        const amountData = document.createElement('td');
-        amountData.textContent = card.amount;
-        dataRow.appendChild(amountData);
+        const cardLimitData = document.createElement('td');
+        cardLimitData.textContent = card.cardLimit;
+        dataRow.appendChild(cardLimitData);
 
-        const dateData = document.createElement('td');
-        dateData.textContent = card.date;
-        dataRow.appendChild(dateData);
+        const balanceData = document.createElement('td');
+        balanceData.textContent = card.balance;
+        dataRow.appendChild(balanceData);
     
         table.appendChild(dataRow);
     })
