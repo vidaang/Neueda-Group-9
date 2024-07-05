@@ -62,7 +62,7 @@ function displayUserData(user) {
 
         // redirects to user's card accounts when row is clicked
         dataRow.addEventListener('click', () => {
-            window.location.href = `pages/all-cards.html?uid=${user.uid}`;
+            window.location.href = `pages/all-cards.html?uid=${user.uid}&name=${user.name}`;
         });
     
         table.appendChild(dataRow);

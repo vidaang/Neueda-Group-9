@@ -1,15 +1,24 @@
 window.onload = () => {
     const uid = new URLSearchParams(window.location.search).get('uid'); // get uid
+    const name = new URLSearchParams(window.location.search).get('name'); // get name
+
+    updateHeader(name);
 
     if (uid) {
-        fetchCardData(uid);
+        fetchCardData(uid, name);
     } else {
         console.error('UID not found in URL');
     }
 };
 
+async function updateHeader(name) {
+    if (true === true) {
+        document.getElementById('user-header').textContent = `${name}'s Cards`;
+    }
+}
+
 // Calls the api endpoint for cards
-async function fetchCardData(uid) {
+async function fetchCardData(uid, name) {
     const cards = [];
     const debitCards = [];
 
@@ -25,7 +34,7 @@ async function fetchCardData(uid) {
     } catch (error) {
         console.error('Fetch Operation Error (Credit Card):', error);
     }
-    displayCreditCardData(cards);
+    displayCreditCardData(cards, name);
 
     // Get debit card cards
     try {
@@ -42,11 +51,11 @@ async function fetchCardData(uid) {
         console.error('Fetch Operation Error (Debit Card):', error);
     }
 
-    displayDebitCardData(debitCards);
+    displayDebitCardData(debitCards, name);
 }
 
 // Creates cards table to display information from cards api
-function displayCreditCardData(card) {
+function displayCreditCardData(card, name) {
 
     const cardInfoDiv = document.getElementById('credit-cards-info');
 
@@ -98,9 +107,9 @@ function displayCreditCardData(card) {
         dataRow.addEventListener('click', () => {
 
             if (card.creditCardId !== null) {
-                window.location.href = `transactions.html?uid=${card.uid}&cardID=${card.creditCardId}&isCreditCard=${true}`;
+                window.location.href = `transactions.html?uid=${card.uid}&name=${name}&cardID=${card.creditCardId}&isCreditCard=${true}`;
             } else {
-                window.location.href = `transactions.html?uid=${card.uid}&cardID=${card.debitCardId}&isCreditCard=${false}`;
+                window.location.href = `transactions.html?uid=${card.uid}&name=${name}&isCreditCard=${false}`;
             }
         });
     
@@ -112,7 +121,7 @@ function displayCreditCardData(card) {
 }
 
 // Creates cards table to display information from cards api
-function displayDebitCardData(card) {
+function displayDebitCardData(card, name) {
 
     const cardInfoDiv = document.getElementById('debit-cards-info');
 
@@ -156,9 +165,9 @@ function displayDebitCardData(card) {
         dataRow.addEventListener('click', () => {
 
             if (card.creditCardId === card.uid) {
-                window.location.href = `transactions.html?uid=${card.uid}&cardID=${card.creditCardId}&isCreditCard=${true}`;
+                window.location.href = `transactions.html?uid=${card.uid}&name=${name}&cardID=${card.creditCardId}&isCreditCard=${true}`;
             } else {
-                window.location.href = `transactions.html?uid=${card.uid}&cardID=${card.debitCardId}&isCreditCard=${false}`;
+                window.location.href = `transactions.html?uid=${card.uid}&name=${name}&cardID=${card.debitCardId}&isCreditCard=${false}`;
             }
         });
     

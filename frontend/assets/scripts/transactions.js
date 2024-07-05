@@ -1,9 +1,10 @@
 window.onload = () => {
     const uid = new URLSearchParams(window.location.search).get('uid');
+    const name = new URLSearchParams(window.location.search).get('name');
     const cardID = new URLSearchParams(window.location.search).get('cardID');
     const isCreditCard = new URLSearchParams(window.location.search).get('isCreditCard')
 
-    updateLink(uid);
+    updateLink(uid, name);
 
     if (cardID !== null) {
         fetchTransactionData(cardID, isCreditCard);
@@ -121,9 +122,9 @@ function displayTransactionData(isCreditCard, transactions) {
 }
 
 // Updates the link to include user UID
-function updateLink(uid) {
+function updateLink(uid,name) {
     const linkElement = document.querySelector('a[href="all-cards.html"]');
     if (linkElement) {
-        linkElement.href = `all-cards.html?uid=${uid}`;
+        linkElement.href = `all-cards.html?uid=${uid}&name=${name}`;
     }
 }
