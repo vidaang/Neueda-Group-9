@@ -97,10 +97,10 @@ function displayCreditCardData(card) {
         // redirects to user's card accounts when row is clicked
         dataRow.addEventListener('click', () => {
 
-            if (card.creditCardId === card.uid) {
-                window.location.href = `transactions.html?uid=${card.creditCardId}&isCreditCard=${true}`;
+            if (card.creditCardId !== null) {
+                window.location.href = `transactions.html?uid=${card.uid}&cardID=${card.creditCardId}&isCreditCard=${true}`;
             } else {
-                window.location.href = `transactions.html?uid=${card.debitCardId}&isCreditCard=${false}`;
+                window.location.href = `transactions.html?uid=${card.uid}&cardID=${card.debitCardId}&isCreditCard=${false}`;
             }
         });
     
@@ -156,9 +156,9 @@ function displayDebitCardData(card) {
         dataRow.addEventListener('click', () => {
 
             if (card.creditCardId === card.uid) {
-                window.location.href = `transactions.html?uid=${card.creditCardId}&isCreditCard=${true}`;
+                window.location.href = `transactions.html?uid=${card.uid}&cardID=${card.creditCardId}&isCreditCard=${true}`;
             } else {
-                window.location.href = `transactions.html?uid=${card.debitCardId}&isCreditCard=${false}`;
+                window.location.href = `transactions.html?uid=${card.uid}&cardID=${card.debitCardId}&isCreditCard=${false}`;
             }
         });
     

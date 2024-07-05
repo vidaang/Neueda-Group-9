@@ -1,25 +1,25 @@
 window.onload = () => {
     const uid = new URLSearchParams(window.location.search).get('uid');
+    const cardID = new URLSearchParams(window.location.search).get('cardID');
     const isCreditCard = new URLSearchParams(window.location.search).get('isCreditCard')
 
-    if (uid) {
-        updateLink(uid);
-        fetchTransactionData(uid, isCreditCard);
+    updateLink(uid);
+
+    if (cardID !== null) {
+        fetchTransactionData(cardID, isCreditCard);
     } else {
         console.error('UID not found in URL');
     }
 };
 
 // Calls the api endpoint for transactions
-async function fetchTransactionData(uid, isCreditCard) {
+async function fetchTransactionData(cardID, isCreditCard) {
     const transactions = [];
 
-    console.log("This is the value of:", isCreditCard);
-
-    if (isCreditCard === true) {
+    if (isCreditCard === "true") {
         // Get credit card transactions
         try {
-            const response = await fetch(`http://localhost:8080/transaction/creditCard/${uid}`);
+            const response = await fetch(`http://localhost:8080/transaction/creditCard/${cardID}`);
             if (!response.ok) {
                 throw new Error('Network response failed: ' + response.statusText);
             }
@@ -30,10 +30,10 @@ async function fetchTransactionData(uid, isCreditCard) {
             console.error('Fetch Operation Error (Credit Card):', error);
         }
     }
-    else {
+    if (isCreditCard === "false") {
         // Get debit card transactions
         try {
-            const response = await fetch(`http://localhost:8080/transaction/debitCard/${uid}`);
+            const response = await fetch(`http://localhost:8080/transaction/debitCard/${cardID}`);
         
             if (!response.ok) {
                 throw new Error('Network response failed: ' + response.statusText);
@@ -46,12 +46,12 @@ async function fetchTransactionData(uid, isCreditCard) {
         }
     }
 
-    displayTransactionData(transactions, isCreditCard);
+    displayTransactionData(isCreditCard, transactions);
     
 }
 
 // Creates transactions table to display information from transactions api
-function displayTransactionData(transactions, isCreditCard) {
+function displayTransactionData(isCreditCard, transactions) {
 
     const transactionsInfoDiv = document.getElementById('transactions-info');
 
@@ -65,7 +65,7 @@ function displayTransactionData(transactions, isCreditCard) {
     uidHeader.textContent = 'User ID';
     headerRow.appendChild(uidHeader);
 
-    if (isCreditCard === true) {
+    if (isCreditCard === "true") {
         const creditCardHeader = document.createElement('th');
         creditCardHeader.textContent = 'Credit Card ID';
         headerRow.appendChild(creditCardHeader);
@@ -94,11 +94,12 @@ function displayTransactionData(transactions, isCreditCard) {
         uidData.textContent = transactions.uid;
         dataRow.appendChild(uidData);
     
-        if (isCreditCard === true) {
+        if (isCreditCard === "true") {
             const creditCardData = document.createElement('td');
             creditCardData.textContent = transactions.creditCardId;
             dataRow.appendChild(creditCardData);
-        } else {
+        } ""
+        if (isCreditCard === "false") {
 
             const debitCardData = document.createElement('td');
             debitCardData.textContent = transactions.debitCardId;
