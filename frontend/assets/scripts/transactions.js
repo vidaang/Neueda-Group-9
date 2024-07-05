@@ -3,6 +3,7 @@ window.onload = () => {
     const isCreditCard = new URLSearchParams(window.location.search).get('isCreditCard')
 
     if (uid) {
+        updateLink(uid);
         fetchTransactionData(uid, isCreditCard);
     } else {
         console.error('UID not found in URL');
@@ -46,6 +47,7 @@ async function fetchTransactionData(uid, isCreditCard) {
     }
 
     displayTransactionData(transactions, isCreditCard);
+    
 }
 
 // Creates transactions table to display information from transactions api
@@ -115,4 +117,12 @@ function displayTransactionData(transactions, isCreditCard) {
 
     transactionsInfoDiv.innerHTML = '';
     transactionsInfoDiv.appendChild(table);
+}
+
+// Updates the link to include user UID
+function updateLink(uid) {
+    const linkElement = document.querySelector('a[href="all-cards.html"]');
+    if (linkElement) {
+        linkElement.href = `all-cards.html?uid=${uid}`;
+    }
 }
